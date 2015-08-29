@@ -12,13 +12,15 @@
     foreach ($match_cursor as $match) {
         foreach($match["participants"] as $player) {
             // Locate mid laner
-            if ($player["timeline"]["role"] == "SOLO" && $player["timeline"]["role"] == "MIDDLE") {
+            if ($player["timeline"]["role"] == "SOLO" && $player["timeline"]["lane"] == "MIDDLE") {
                 $champion_id = $player["championId"];
                 // Loop through each item
                 for ($i = 0; $i < 6; $i++) {
                     $item_id = $player["stats"]["item" . $i];
                     if ($item_id != 0) {
                         $old_item[$item_id]++;
+                        if (!isset($old_champion_item[$champion_id]))
+                            $old_champion_item[$champion_id] = array();
                         $old_champion_item[$champion_id][$item_id]++;
                     }
                 }
