@@ -5,6 +5,7 @@
 	 */
 	require "classes/riot-league-api.php";
 	require "classes/rate-limit.php";
+	require "classes/settings.php";
 
 	$opts = getopt("i:t:v:");
 	if(!isset($opts["i"]) || !isset($opts["t"]) || !isset($opts["v"])) {
@@ -24,7 +25,7 @@
 		die;
 	}
 	$region = $matches[1];
-	$api = new RiotLeagueAPI($region, "029e6503-7dc2-4a97-ac9e-d9f152c1b439");
+	$api = new RiotLeagueAPI($region, $league_api_key);
 	$time = new RateLimit();
 	$mongo = new MongoClient();
 	$db = $mongo->{"build-ap"};
