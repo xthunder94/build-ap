@@ -51,5 +51,9 @@
 		function getChampions() {
 			return $this->getDataGlobal("/api/lol/static-data/{region}/v1.2/champion?champData=all");
 		}
+
+		function getItems() {
+			return $this->getDataGlobal("/api/lol/static-data/na/v1.2/item?itemListData=all");
+		}
 	}
 ?>

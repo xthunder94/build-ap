@@ -22,7 +22,22 @@
         $time->delay();
     }
     $document = json_decode($data);
-    foreach($document->{data} as $name => $data) {
-        $collection->insert($data);
+    foreach($document->{"data"} as $name => $data) {
+        $champions->insert($data);
+    }
+    // Add items to database
+    $items = $db->{"STATIC.ITEMS"};
+    $items->drop();
+    $success = false;
+    while(!$success) {
+        $data = $api->getItems();
+        $success = $api->getSuccess();
+        if(!$success)
+            $time->exceed();
+        $time->delay();
+    }
+    $document = json_decode($data);
+    foreach($document->{"data"} as $name => $data) {
+        $items->insert($data);
     }
 ?>
