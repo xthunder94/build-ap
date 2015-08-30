@@ -7,11 +7,15 @@
     $new_matches = $db->{"RANKED_SOLO.5.14.NA"};
     // Conversion Functions
     function GetItem($itemid) {
+        global $static_items;
         return $static_items->findOne(array('id' => $itemid));
     }
     function GetChampion($championid) {
+        global $static_champions;
         return $static_champions->findOne(array('id' => $championid));
     }
+    print_r(GetItem(3068));
+    exit;
     // Global Item Usage
     $old_item = array();
     $old_item_total = 0;
@@ -44,8 +48,6 @@
         }
         $old_item_total++;
     }
-    print_r(GetItem(3068));
-    exit;
     print_r($old_item);
     print_r($old_champion_item);
     echo "$old_item_total\n";
