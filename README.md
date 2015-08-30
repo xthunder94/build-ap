@@ -14,6 +14,11 @@ http://104.236.95.61/build-ap/index.html
 6. Strange how people are building Void Staff less even though the value of AP items has decreased overall
 7. TL;DR; People don't care that it's giving you less AP, they still build the same items.
 
+### Champion/Item Specific Findings
+1. Large increase in people building Nashor's Tooth and Rylai's Crystal Scepter on Azir. (http://104.236.95.61/build-ap/champion.html?do=Azir)
+2. More people are building Liandry's Torment probably because % HP burn provides more power for some champions than flat AP now.
+3. More people are finishing up Perfect Hex Core faster because it's a better AP source than other AP items.
+
 ### Technologies
 * PHP
 * MongoDB
