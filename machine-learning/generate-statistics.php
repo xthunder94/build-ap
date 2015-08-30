@@ -217,7 +217,7 @@
         $document["new_build"] = array();
         arsort($new_champion_item[$championid]);
         $i = 0;
-        foreach (array_slice($new_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
+        foreach ($new_champion_item[$championid] as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
                 if (IsAPItem($itemid)) {

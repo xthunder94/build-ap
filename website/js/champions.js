@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $.getJSON("champions.json", function(data) {
+    $.getJSON("php/getchampions.php", function(data) {
         var arrayLength = data.length;
         data.sort(function(a, b) {return a.name.localeCompare(b.name);});
         $('#selectchampion').html("");

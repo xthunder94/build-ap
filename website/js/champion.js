@@ -8,7 +8,7 @@ function getParameterByName(name) {
 $(document).ready(function() {
     var champname = getParameterByName('do');
     console.log(champname);
-    $.getJSON("champions.json", function(data) {
+    $.getJSON("php/getchampions.php", function(data) {
         var arrayLength = data.length;
         for (var i = 0; i < arrayLength; i++) {
             if(data[i].name.toUpperCase() == champname.toUpperCase()) {
@@ -29,11 +29,15 @@ $(document).ready(function() {
                 for (var j = 0; j < itemcount; j++) {
                     $('#suggestedbuild').append('<img src="' + data[i].old_build[j] + '"></img>');
                 }
+                $('#suggestedbuild').append('<img class="arrow" src="img/arrow.png"></img>');
+                var itemcount = data[i].new_build.length;
+                for (var j = 0; j < itemcount; j++) {
+                    $('#suggestedbuild').append('<img src="' + data[i].new_build[j] + '"></img>');
+                }
             }
         }
     });
-    //$.getJSON("php/getchampion.php?do=" + encodeURI(champname), function(data) {
-    $.getJSON("ahri.json", function(data) {
+    $.getJSON("php/getchampion.php?do=" + encodeURI(champname), function(data) {
         var arrayLength = data.length;
         data.sort(function(a, b) {return b.new_usage-a.new_usage});
         $('#overallitemusage').html("");
