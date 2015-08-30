@@ -18,6 +18,7 @@ http://104.236.95.61/build-ap/index.html
 1. Large increase in people building Nashor's Tooth and Rylai's Crystal Scepter on Azir. (http://104.236.95.61/build-ap/champion.html?do=Azir)
 2. More people are building Liandry's Torment probably because % HP burn provides more power for some champions than flat AP now.
 3. More people are finishing up Perfect Hex Core faster because it's a better AP source than other AP items.
+4. There are still trolls building support gold per 10 items and going mid.
 
 ### Technologies
 * PHP
