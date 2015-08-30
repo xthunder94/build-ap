@@ -159,6 +159,7 @@
         $document["new_winrate"] = $new_item_win[$itemid] / $new_item[$itemid] * 100;
         $global_item->insert($document);
     }
+    $global_champion->drop();
     foreach ($old_champion_item as $championid => $championitemdata) {
         $champion_info = GetChampion($championid);
         $document = array();
