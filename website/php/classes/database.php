@@ -27,5 +27,15 @@
 			}
 			return $result_array;
 		}
+
+		function getChampionUsage($name) {
+			$champion = $this->db->{"ML.STATISTICS." . strtoupper($name) . ".ITEM"};
+			$items = $champion->find();
+			$result_array = array();
+			foreach ($items as $item) {
+				$result_array[] = $item;
+			}
+			return $result_array;
+		}
 	}
 ?>

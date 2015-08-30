@@ -161,7 +161,7 @@
             $document = array();
             $document["id"] = $itemid;
             $document["name"] = $item_info["name"];
-            $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
             $document["old_usage"] = round($itemcount / $old_item_total * 100, 2);
             $document["new_usage"] = round($new_item[$itemid] / $new_item_total * 100, 2);
             $document["old_winrate"] = round($old_item_win[$itemid] / $itemcount * 100, 2);
@@ -181,7 +181,7 @@
                 $document = array();
                 $document["id"] = $itemid;
                 $document["name"] = $item_info["name"];
-                $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+                $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
                 $document["old_usage"] = round($itemcount / $old_champion_item_total[$championid] * 100, 2);
                 $document["new_usage"] = round($new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
                 $document["old_winrate"] = round($old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100, 2);
@@ -192,7 +192,7 @@
         $document = array();
         $document["id"] = $championid;
         $document["name"] = $champion_info["name"];
-        $document["icon"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/champion/" . $champion_info["key"] . ".png";
+        $document["icon"] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/" . $champion_info["key"] . ".png";
         $document["image"] = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" . $champion_info["key"] . "_0.jpg";
         $document["old_winrate"] = round($old_champion_win[$championid] / $old_champion_item_total[$championid] * 100, 2);
         $document["new_winrate"] = round($new_champion_win[$championid] / $new_champion_item_total[$championid] * 100, 2);
@@ -206,7 +206,7 @@
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
                 if (IsAPItem($itemid))
-                    $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+                    $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
             }
         }
         $document["new_build"] = array();
@@ -215,7 +215,7 @@
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
                 if (IsAPItem($itemid))
-                    $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+                    $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
             }
         }
         $global_champion->insert($document);
