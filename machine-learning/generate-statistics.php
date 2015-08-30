@@ -129,7 +129,7 @@
         $document["new_usage"] = $new_item[$itemid] / $new_item_total * 100;
         $document["old_winrate"] = $old_winrate[$itemid] / $old_item_total * 100;
         $document["new_winrate"] = $new_winrate[$itemid] / $new_item_total * 100;
-        global_item->insert($document);
+        $global_item->insert($document);
     }
     echo "Total Count: $old_item_total\n";
     print_r($old_item);
