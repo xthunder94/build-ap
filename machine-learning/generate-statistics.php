@@ -50,7 +50,7 @@
                 // Champion Damage Dealt
                 if (!isset($old_champion_damage["$champion_id"]))
                     $old_champion_damage["$champion_id"] = 0;
-                $old_champion_damage["$champion_id"] += $match["stats"]["totalDamageDealtToChampions"];
+                $old_champion_damage["$champion_id"] += $player["stats"]["totalDamageDealtToChampions"];
                 // Loop through each item
                 for ($i = 0; $i < 6; $i++) {
                     $item_id = $player["stats"]["item" . $i];
@@ -114,7 +114,7 @@
                 // Champion Damage Dealt
                 if (!isset($new_champion_damage["$champion_id"]))
                     $new_champion_damage["$champion_id"] = 0;
-                $new_champion_damage["$champion_id"] += $match["stats"]["totalDamageDealtToChampions"];
+                $new_champion_damage["$champion_id"] += $player["stats"]["totalDamageDealtToChampions"];
                 // Loop through each item
                 for ($i = 0; $i < 6; $i++) {
                     $item_id = $player["stats"]["item" . $i];
