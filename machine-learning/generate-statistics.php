@@ -24,6 +24,14 @@
         }
         return false;
     }
+    function IsFinalItem($itemid) {
+        if ($itemid == 1056) // Doran's Ring
+            return false;
+        $item_data = GetItem($itemid);
+        if (isset($item_data["into"]))
+            return false;
+        return true;
+    }
     // Global Item Usage
     $old_item = array(); // ItemID => Count
     $old_item_win = array(); // ItemID => Win
@@ -206,7 +214,7 @@
         foreach ($old_champion_item[$championid] as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
-                if (IsAPItem($itemid)) {
+                if (IsAPItem($itemid) && IsFinalItem($itemid)) {
                     if ($i > 5)
                         break;
                     $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
@@ -220,7 +228,7 @@
         foreach ($new_champion_item[$championid] as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
-                if (IsAPItem($itemid)) {
+                if (IsAPItem($itemid) && IsFinalItem($itemid)) {
                     if ($i > 5)
                         break;
                     $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
