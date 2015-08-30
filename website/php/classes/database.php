@@ -13,8 +13,17 @@
 			$items = $global_item->find();
 			$result_array = array();
 			foreach ($items as $item) {
-				print_r($item);
 				$result_array[] = $item;
+			}
+			return $result_array;
+		}
+
+		function getOverallChampionUsage() {
+			$global_champion = $this->db->{"ML.STATISTICS.GLOBAL.CHAMPION"};
+			$champions = $global_champion->find();
+			$result_array = array();
+			foreach ($champions as $champion) {
+				$result_array[] = $champion;
 			}
 			return $result_array;
 		}
