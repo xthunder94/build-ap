@@ -16,6 +16,14 @@
         global $static_champions;
         return $static_champions->findOne(array('id' => $championid));
     }
+    function IsAPItem($itemid) {
+        $item_data = GetItem($itemid);
+        foreach($item_data["tags"] as $tag) {
+            if ($tag == "SpellDamage")
+                return true;
+        }
+        return false;
+    }
     // Global Item Usage
     $old_item = array(); // ItemID => Count
     $old_item_win = array(); // ItemID => Win
@@ -149,15 +157,17 @@
     $global_item->drop();
     foreach ($old_item as $itemid => $itemcount) {
         $item_info = GetItem($itemid);
-        $document = array();
-        $document["id"] = $itemid;
-        $document["name"] = $item_info["name"];
-        $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
-        $document["old_usage"] = round($itemcount / $old_item_total * 100, 2);
-        $document["new_usage"] = round($new_item[$itemid] / $new_item_total * 100, 2);
-        $document["old_winrate"] = round($old_item_win[$itemid] / $itemcount * 100, 2);
-        $document["new_winrate"] = round($new_item_win[$itemid] / $new_item[$itemid] * 100, 2);
-        $global_item->insert($document);
+        if (IsAPItem($itemid)) {
+            $document = array();
+            $document["id"] = $itemid;
+            $document["name"] = $item_info["name"];
+            $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            $document["old_usage"] = round($itemcount / $old_item_total * 100, 2);
+            $document["new_usage"] = round($new_item[$itemid] / $new_item_total * 100, 2);
+            $document["old_winrate"] = round($old_item_win[$itemid] / $itemcount * 100, 2);
+            $document["new_winrate"] = round($new_item_win[$itemid] / $new_item[$itemid] * 100, 2);
+            $global_item->insert($document);
+        }
     }
     $global_champion->drop();
     foreach ($old_champion_item as $championid => $championitemdata) {
@@ -167,15 +177,17 @@
         $this_champion->drop();
         foreach ($championitemdata as $itemid => $itemcount) {
             $item_info = GetItem($itemid);
-            $document = array();
-            $document["id"] = $itemid;
-            $document["name"] = $item_info["name"];
-            $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
-            $document["old_usage"] = round($itemcount / $old_champion_item_total[$championid] * 100, 2);
-            $document["new_usage"] = round($new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
-            $document["old_winrate"] = round($old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100, 2);
-            $document["new_winrate"] = round($old_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
-            $this_champion->insert($document);
+            if (IsAPItem($itemid)) {
+                $document = array();
+                $document["id"] = $itemid;
+                $document["name"] = $item_info["name"];
+                $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+                $document["old_usage"] = round($itemcount / $old_champion_item_total[$championid] * 100, 2);
+                $document["new_usage"] = round($new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
+                $document["old_winrate"] = round($old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100, 2);
+                $document["new_winrate"] = round($old_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
+                $this_champion->insert($document);
+            }
         }
         $document = array();
         $document["id"] = $championid;
@@ -191,14 +203,20 @@
         $document["old_build"] = array();
         asort($old_champion_item[$championid]);
         foreach (array_slice($old_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
-            $item_info = GetItem($itemid);
-            $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            if ($itemid != 0) {
+                $item_info = GetItem($itemid);
+                if (IsAPItem($itemid))
+                    $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            }
         }
         $document["new_build"] = array();
         asort($new_champion_item[$championid]);
         foreach (array_slice($new_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
-            $item_info = GetItem($itemid);
-            $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            if ($itemid != 0) {
+                $item_info = GetItem($itemid);
+                if (IsAPItem($itemid))
+                    $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            }
         }
         $global_champion->insert($document);
     }
