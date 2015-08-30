@@ -178,11 +178,10 @@
             $this_champion->insert($document);
         }
         $document = array();
-        $shortname = str_replace(' ', '', $champion_info["name"]);
         $document["id"] = $championid;
         $document["name"] = $champion_info["name"];
-        $document["icon"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/champion/" . $shortname . ".png";
-        $document["image"] = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" . $shortname . "_0.jpg";
+        $document["icon"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/champion/" . $champion_info["key"] . ".png";
+        $document["image"] = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" . $champion_info["key"] . "_0.jpg";
         $document["old_winrate"] = $old_champion_win[$championid] / $old_champion_item_total[$championid] * 100;
         $document["new_winrate"] = $new_champion_win[$championid] / $new_champion_item_total[$championid] * 100;
         $document["old_pickrate"] = $old_champion_item_total[$championid] / $old_item_total;
