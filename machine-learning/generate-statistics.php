@@ -202,20 +202,30 @@
         $document["new_damage"] = round($new_champion_damage[$championid] / $new_champion_item_total[$championid]);
         $document["old_build"] = array();
         arsort($old_champion_item[$championid]);
-        foreach (array_slice($old_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
+        $i = 0;
+        foreach ($old_champion_item[$championid] as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
-                if (IsAPItem($itemid))
+                if (IsAPItem($itemid)) {
+                    if ($i > 5)
+                        break;
                     $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
+                    $i++;
+                }
             }
         }
         $document["new_build"] = array();
         arsort($new_champion_item[$championid]);
+        $i = 0;
         foreach (array_slice($new_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
-                if (IsAPItem($itemid))
+                if (IsAPItem($itemid)) {
+                    if ($i > 5)
+                        break;
                     $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/" . $item_info["image"]["full"];
+                    $i++;
+                }
             }
         }
         $global_champion->insert($document);
