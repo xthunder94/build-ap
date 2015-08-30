@@ -162,6 +162,21 @@
     $global_champion->drop();
     foreach ($old_champion_item as $championid => $championitemdata) {
         $champion_info = GetChampion($championid);
+        // Generate Individual Statistics
+        $this_champion = $db->{"ML.STATISTICS." . strtoupper($champion_info["name"]) . ".ITEM"};
+        $this_champion->drop();
+        foreach ($championitemdata as $itemid => $itemcount) {
+            $item_info = GetItem($itemid);
+            $document = array();
+            $document["id"] = $itemid;
+            $document["name"] = $item_info["name"];
+            $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+            $document["old_usage"] = $itemcount / $old_champion_item_total[$championid] * 100;
+            $document["new_usage"] = $new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100;
+            $document["old_winrate"] = $old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100;
+            $document["new_winrate"] = $old_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100;
+            $this_champion->insert($document);
+        }
         $document = array();
         $document["id"] = $championid;
         $document["name"] = $champion_info["name"];
@@ -172,6 +187,18 @@
         $document["new_pickrate"] = $new_champion_item_total[$championid] / $new_item_total;
         $document["old_damage"] = $old_champion_damage[$championid] / $old_champion_item_total[$championid];
         $document["new_damage"] = $new_champion_damage[$championid] / $new_champion_item_total[$championid];
+        $document["old_build"] = array();
+        asort($old_champion_item[$championid]);
+        foreach (array_slice($old_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
+            $item_info = GetItem($itemid);
+            $document["old_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+        }
+        $document["new_build"] = array();
+        asort($new_champion_item[$championid]);
+        foreach (array_slice($new_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
+            $item_info = GetItem($itemid);
+            $document["new_build"][] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
+        }
         $global_champion->insert($document);
     }
     echo "Total Count: $old_item_total\n";
