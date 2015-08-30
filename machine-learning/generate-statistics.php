@@ -201,11 +201,4 @@
         }
         $global_champion->insert($document);
     }
-    echo "Total Count: $old_item_total\n";
-    print_r($old_item);
-    print_r($old_item_win);
-    echo "==========================================\n";
-    print_r($old_champion_item);
-    print_r($old_champion_item_win);
-    print_r($old_champion_item_total);
 ?>
