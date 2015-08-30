@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.getJSON("items.json", function(data) {
         var arrayLength = data.length;
-        data.sort(function(a, b) {return b.new_usage-a.old_usage});
+        data.sort(function(a, b) {return b.new_usage-a.new_usage});
         $('#overallitemusage').html("");
         for (var i = 0; i < arrayLength; i++) {
             if(data[i].name != null) {
@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
     $.getJSON("champions.json", function(data) {
         var arrayLength = data.length;
-        data.sort(function(a, b) {return b.new_usage-a.old_usage});
+        data.sort(function(a, b) {return b.new_pickrate-a.new_pickrate});
         $('#overallchampionusage').html("");
         for (var i = 0; i < arrayLength; i++) {
             if(data[i].name != null) {

@@ -153,10 +153,10 @@
         $document["id"] = $itemid;
         $document["name"] = $item_info["name"];
         $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
-        $document["old_usage"] = $itemcount / $old_item_total * 100;
-        $document["new_usage"] = $new_item[$itemid] / $new_item_total * 100;
-        $document["old_winrate"] = $old_item_win[$itemid] / $itemcount * 100;
-        $document["new_winrate"] = $new_item_win[$itemid] / $new_item[$itemid] * 100;
+        $document["old_usage"] = round($itemcount / $old_item_total * 100, 2);
+        $document["new_usage"] = round($new_item[$itemid] / $new_item_total * 100, 2);
+        $document["old_winrate"] = round($old_item_win[$itemid] / $itemcount * 100, 2);
+        $document["new_winrate"] = round($new_item_win[$itemid] / $new_item[$itemid] * 100, 2);
         $global_item->insert($document);
     }
     $global_champion->drop();
@@ -171,10 +171,10 @@
             $document["id"] = $itemid;
             $document["name"] = $item_info["name"];
             $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
-            $document["old_usage"] = $itemcount / $old_champion_item_total[$championid] * 100;
-            $document["new_usage"] = $new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100;
-            $document["old_winrate"] = $old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100;
-            $document["new_winrate"] = $old_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100;
+            $document["old_usage"] = round($itemcount / $old_champion_item_total[$championid] * 100, 2);
+            $document["new_usage"] = round($new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
+            $document["old_winrate"] = round($old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100, 2);
+            $document["new_winrate"] = round($old_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
             $this_champion->insert($document);
         }
         $document = array();
@@ -182,12 +182,12 @@
         $document["name"] = $champion_info["name"];
         $document["icon"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/champion/" . $champion_info["key"] . ".png";
         $document["image"] = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" . $champion_info["key"] . "_0.jpg";
-        $document["old_winrate"] = $old_champion_win[$championid] / $old_champion_item_total[$championid] * 100;
-        $document["new_winrate"] = $new_champion_win[$championid] / $new_champion_item_total[$championid] * 100;
-        $document["old_pickrate"] = $old_champion_item_total[$championid] / $old_item_total;
-        $document["new_pickrate"] = $new_champion_item_total[$championid] / $new_item_total;
-        $document["old_damage"] = $old_champion_damage[$championid] / $old_champion_item_total[$championid];
-        $document["new_damage"] = $new_champion_damage[$championid] / $new_champion_item_total[$championid];
+        $document["old_winrate"] = round($old_champion_win[$championid] / $old_champion_item_total[$championid] * 100, 2);
+        $document["new_winrate"] = round($new_champion_win[$championid] / $new_champion_item_total[$championid] * 100, 2);
+        $document["old_pickrate"] = round($old_champion_item_total[$championid] / $old_item_total * 100, 2);
+        $document["new_pickrate"] = round($new_champion_item_total[$championid] / $new_item_total * 100, 2);
+        $document["old_damage"] = round($old_champion_damage[$championid] / $old_champion_item_total[$championid]);
+        $document["new_damage"] = round($new_champion_damage[$championid] / $new_champion_item_total[$championid]);
         $document["old_build"] = array();
         asort($old_champion_item[$championid]);
         foreach (array_slice($old_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
