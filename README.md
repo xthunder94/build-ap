@@ -12,6 +12,7 @@ http://104.236.95.61/build-ap/index.html
 4. Although core AP items were nerfed, they are still being built because there's nothing else to build in place of their utility
 5. Rylai's Crystal Scepter is being used alot more across the board (probably because it is now on par with the old core items)
 6. Strange how people are building Void Staff less even though the value of AP items has decreased overall
+7. TL;DR; People don't care that it's giving you less AP, they still build the same items.
 
 ### Technologies
 * PHP
