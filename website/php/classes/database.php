@@ -10,7 +10,13 @@
 
 		function getOverallItemUsage() {
 			$global_item = $this->db->{"ML.STATISTICS.GLOBAL.ITEM"};
-			return $global_item->find();
+			$items = $global_item->find();
+			$result_array = array();
+			foreach ($items as $item) {
+				print_r($item);
+				$result_array[] = $item;
+			}
+			return $result_array;
 		}
 	}
 ?>
