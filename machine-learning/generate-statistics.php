@@ -201,7 +201,7 @@
         $document["old_damage"] = round($old_champion_damage[$championid] / $old_champion_item_total[$championid]);
         $document["new_damage"] = round($new_champion_damage[$championid] / $new_champion_item_total[$championid]);
         $document["old_build"] = array();
-        asort($old_champion_item[$championid]);
+        arsort($old_champion_item[$championid]);
         foreach (array_slice($old_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
@@ -210,7 +210,7 @@
             }
         }
         $document["new_build"] = array();
-        asort($new_champion_item[$championid]);
+        arsort($new_champion_item[$championid]);
         foreach (array_slice($new_champion_item[$championid], 0, 6, true) as $itemid => $itemcount) {
             if ($itemid != 0) {
                 $item_info = GetItem($itemid);
