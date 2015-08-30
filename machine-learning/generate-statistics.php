@@ -127,8 +127,8 @@
         $document["image"] = "http://ddragon.leagueoflegends.com/cdn/5.7.1/img/item/" . $item_info["image"]["full"];
         $document["old_usage"] = $itemcount / $old_item_total * 100;
         $document["new_usage"] = $new_item[$itemid] / $new_item_total * 100;
-        $document["old_winrate"] = $old_winrate[$itemid] / $old_item_total * 100;
-        $document["new_winrate"] = $new_winrate[$itemid] / $new_item_total * 100;
+        $document["old_winrate"] = $old_item_win[$itemid] / $old_item_total * 100;
+        $document["new_winrate"] = $new_item_win[$itemid] / $new_item_total * 100;
         $global_item->insert($document);
     }
     echo "Total Count: $old_item_total\n";
