@@ -15,6 +15,26 @@ function populateItem(arr_collection) {
     }
 }
 
+function i_old_usage() {
+    items_collection.sort(function(a, b) {return b.old_usage-a.old_usage});
+    populateItem(items_collection);
+}
+
+function i_new_usage() {
+    items_collection.sort(function(a, b) {return b.new_usage-a.new_usage});
+    populateItem(items_collection);
+}
+
+function i_old_winrate() {
+    items_collection.sort(function(a, b) {return b.old_winrate-a.old_winrate});
+    populateItem(items_collection);
+}
+
+function i_new_winrate() {
+    items_collection.sort(function(a, b) {return b.new_winrate-a.new_winrate});
+    populateItem(items_collection);
+}
+
 $(document).ready(function() {
     $.getJSON("php/getitems.php", function(data) {
         items_collection = data;
