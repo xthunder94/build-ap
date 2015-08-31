@@ -1,6 +1,6 @@
 # Build-AP
 
-Build-AP analyzes patches 5.11 and 5.14 and provides insight into champion win rates as well as item utilization differences.
+Build-AP analyzes patches 5.11 and 5.14 and provides insight into champion win rates as well as item utilization differences then provides a suggested build based on winrates.
 
 ### Demo
 http://104.236.95.61/build-ap/index.html
@@ -19,6 +19,7 @@ http://104.236.95.61/build-ap/index.html
 2. More people are building Liandry's Torment probably because % HP burn provides more power for some champions than flat AP now.
 3. More people are finishing up Perfect Hex Core faster because it's a better AP source than other AP items.
 4. There are still trolls building support gold per 10 items and going mid.
+5. Soraka mid is a thing but people still get ardent censer.
 
 ### Technologies
 * PHP
