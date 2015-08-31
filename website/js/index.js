@@ -3,6 +3,7 @@ var champions_collection;
 
 function populateItem(arr_collection) {
     $('#overallitemusage').html("");
+    var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
         if(arr_collection[i].name != null) {
             var old_usage = arr_collection[i].old_usage > arr_collection[i].new_usage ? 'text-success' : 'text-danger';
@@ -17,7 +18,6 @@ function populateItem(arr_collection) {
 $(document).ready(function() {
     $.getJSON("php/getitems.php", function(data) {
         items_collection = data;
-        var arrayLength = data.length;
         data.sort(function(a, b) {return b.new_usage-a.new_usage});
         populateItem(data);
     });
