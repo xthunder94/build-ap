@@ -5,6 +5,27 @@
 		private $responseCode;
 
 		private function getData($url) {
+			$cparams = array(
+				'http' => array(
+					'method' => 'GET',
+					'ignore_errors' => true
+				)
+			);
+			$context = stream_context_create($cparams);
+			$fp = fopen($url, 'rb', false, $context);
+			if (!$fp) {
+				$res = "";
+			} else {
+				var_dump($meta['wrapper_data']);
+				$res = stream_get_contents($fp);
+			}
+			$this->responseCode = 200;
+			if ($res == "")
+				$this->responseCode = 429;
+			return $res;
+		}
+
+		/*private function getData($url) {
 			$ch = curl_init($url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -13,7 +34,7 @@
 			$this->responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 			return $data;
-		}
+		}*/
 
 		private function getDataRegion($url) {
 			$url = str_replace("{region}", $this->region, $url);
