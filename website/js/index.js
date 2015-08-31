@@ -3,7 +3,7 @@ var champions_collection;
 
 function populateItem(arr_collection) {
     $('#overallitemusage').html("");
-    var arrayLength = data.length;
+    var arrayLength = arr_collection.length;
     for (var i = 0; i < arrayLength; i++) {
         if(arr_collection[i].name != null) {
             var old_usage = arr_collection[i].old_usage > arr_collection[i].new_usage ? 'text-success' : 'text-danger';
