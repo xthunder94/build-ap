@@ -193,7 +193,7 @@
                 $document["old_usage"] = round($itemcount / $old_champion_item_total[$championid] * 100, 2);
                 $document["new_usage"] = round($new_champion_item[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
                 $document["old_winrate"] = round($old_champion_item_win[$championid][$itemid] / $old_champion_item_total[$championid] * 100, 2);
-                $document["new_winrate"] = round($old_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
+                $document["new_winrate"] = round($new_champion_item_win[$championid][$itemid] / $new_champion_item_total[$championid] * 100, 2);
                 $this_champion->insert($document);
             }
         }
