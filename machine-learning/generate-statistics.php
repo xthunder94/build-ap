@@ -3,6 +3,9 @@
     $db = $mongo->{"build-ap"};
     $static_champions = $db->{"STATIC.CHAMPIONS"};
     $static_items = $db->{"STATIC.ITEMS"};
+    $regions = array('BR','EUNE','EUW','KR','LAN','LAS','NA','OCE','RU','TR');
+    $patches = array('5.11','5.14');
+    $types = array('NORMAL_5X5','RANKED_SOLO');
     $old_matches = $db->{"RANKED_SOLO.5.11.NA"};
     $new_matches = $db->{"RANKED_SOLO.5.14.NA"};
     $global_item = $db->{"ML.STATISTICS.GLOBAL.ITEM"};
@@ -41,6 +44,10 @@
     $old_champion_item_total = array(); // ChampionID => Count
     $old_champion_win = array(); // ChampionID => Win
     $old_champion_damage = array(); // ChampionID => Total Damage (Before Divide By Champion Count)
+    foreach ($regions as $region) {
+    foreach ($patches as $patch) {
+    foreach ($types as $type) {
+    $old_matches = $db->{"$type.$patch.$region"};
     $match_cursor = $old_matches->find();
     foreach ($match_cursor as $match) {
         // Get winning team
@@ -97,6 +104,9 @@
             }
         }
     }
+    }
+    }
+    }
     $new_item = array(); // ItemID => Count
     $new_item_win = array(); // ItemID => Win
     $new_item_total = 0; // Mid Laner Count
@@ -105,6 +115,10 @@
     $new_champion_item_total = array(); // ChampionID => Count
     $new_champion_win = array(); // ChampionID => Win
     $new_champion_damage = array(); // ChampionID => Total Damage (Before Divide By Champion Count)
+    foreach ($regions as $region) {
+    foreach ($patches as $patch) {
+    foreach ($types as $type) {
+    $match_cursor = $db->{"$type.$patch.$region"};
     $match_cursor = $new_matches->find();
     foreach ($match_cursor as $match) {
         // Get winning team
@@ -160,6 +174,9 @@
                 $new_item_total++;
             }
         }
+    }
+    }
+    }
     }
     // Generate Global Statistics
     $global_item->drop();
