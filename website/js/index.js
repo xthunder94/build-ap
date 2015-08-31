@@ -15,6 +15,11 @@ function populateItem(arr_collection) {
     }
 }
 
+function i_name() {
+    items_collection.sort(function(a, b) {return a.name.localeCompare(b.name)});
+    populateItem(items_collection);
+}
+
 function i_old_usage() {
     items_collection.sort(function(a, b) {return b.old_usage-a.old_usage});
     populateItem(items_collection);
