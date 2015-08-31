@@ -31,6 +31,7 @@
 	$db = $mongo->{"build-ap"};
 	$collection_name = strtoupper($opts["t"] . "." . $opts["v"] . "." . $region);
 	$collection = $db->{$collection_name};
+	$collection->createIndex(array('matchId' => 1));
 	$matches = json_decode(file_get_contents($opts["i"]), true);
 	echo "retrieving $collection_name...\n";
 	$match_count = count($matches);
@@ -47,8 +48,10 @@
 			$document = json_decode($data);
 			$collection->remove(array('matchId' => $document->matchId));
 			$collection->insert($document);
+			echo ($i + 1) . "/$match_count processed...\r";
+		} else {
+			echo ($i + 1) . "/$match_count skipped...\r";
 		}
-		echo ($i + 1) . "/$match_count processed...\r";
 	}
 	echo "\n";
 	echo "done\n";
