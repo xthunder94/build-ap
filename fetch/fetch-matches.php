@@ -35,17 +35,19 @@
 	echo "retrieving $collection_name...\n";
 	$match_count = count($matches);
 	for($i = 0; $i < $match_count; $i++) {
-		$success = false;
-		while(!$success) {
-			$data = $api->getMatch($matches[$i]);
-			$success = $api->getSuccess();
-			if(!$success)
-				$time->exceed();
-			$time->delay();
+		if ($collection->find(array('matchId' => $matches[$i]))->count() == 0) {
+			$success = false;
+			while(!$success) {
+				$data = $api->getMatch($matches[$i]);
+				$success = $api->getSuccess();
+				if(!$success)
+					$time->exceed();
+				$time->delay();
+			}
+			$document = json_decode($data);
+			$collection->remove(array('matchId' => $document->matchId));
+			$collection->insert($document);
 		}
-		$document = json_decode($data);
-		$collection->remove(array('matchId' => $document->matchId));
-		$collection->insert($document);
 		echo ($i + 1) . "/$match_count processed...\r";
 	}
 	echo "\n";
