@@ -3,7 +3,7 @@
 Build-AP analyzes patches 5.11 and 5.14 and provides insight into champion win rates as well as item utilization differences then provides a suggested build based on winrates.
 
 ### Demo
-http://104.236.95.61/build-ap/index.html
+http://104.131.190.246/build-ap/index.html
 
 ### Findings
 1. Get a Mejais
