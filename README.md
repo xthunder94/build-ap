@@ -31,4 +31,4 @@ http://104.131.190.246/build-ap/index.html
 1. Install MongoDB and PHP's MongoDB driver. MongoDB should have no password.
 2. Go to the "fetch" folder and execute "php fetch-all-matches.php -i AP_ITEM_DATASET".
 3. After all matches are imported into MongoDB, go to the "machine-learning" folder and execute "php generate-statistics.php".
-4. Copy all files from website to a apache or nginx webserver and it should automatically display all the data. If not, make sure the mongo PECL package is installed.
+4. Copy all files from the "website" folder to an apache or an nginx webserver and it should automatically display all the data. If not, make sure the mongo PECL package is installed.
